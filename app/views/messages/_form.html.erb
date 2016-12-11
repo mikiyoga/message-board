@@ -7,10 +7,13 @@
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
       <%= message.body %>
+      (<%= link_to "edit" , edit_message_path(message) %>
+         <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+        )
       <br>
-    <% end %>
   </div>
 </div>
+<%= render 'form' %>
 
 <%= form_for(@message, html: {class: "form-horizontal"}) do |f| %>
   <% if @message.errors.present? %>
@@ -49,6 +52,5 @@
   
   <div class="col-md-offset-2">
     <%= f.submit class: "btn btn-sm btn-primary" %>
-  </div>
-  
+  </div>s
 <% end %>
